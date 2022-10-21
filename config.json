@@ -1,4 +1,7 @@
 {
     "url-backend": "127.0.0.1",
-    "port": 9999
-    }
+    "port": 9999,
+
+    "data-db-conection":"mongodb+srv://jgbuenaventurap:bdregistraduria@cluster0.kv4zq1l.mongodb.net/?retryWrites=true&w=majority",
+    "name-db":"bd-registraduria-ciclo4"
+}
