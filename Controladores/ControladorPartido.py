@@ -1,7 +1,7 @@
 from Repositorios.RepositorioPartido import RepositorioPartido
 from Modelos.Partido import Partido
 
-class ControladorResultado():
+class ControladorPartido():
     def __init__(self):
         self.repositorioPartido = RepositorioPartido()
     def index(self):
@@ -13,9 +13,8 @@ class ControladorResultado():
         elPartido=Partido(self.repositorioPartido.findById(id))
         return elPartido.__dict__
     def update(self,id,infoPartido):
-
         partidoActual=Partido(self.repositorioPartido.findById(id))
-        partidoActual.numero = infoPartido["nombre"]
+        partidoActual.nombre = infoPartido["nombre"]
         partidoActual.lema = infoPartido["lema"]
         return self.repositorioPartido.save(partidoActual)
     def delete(self,id):

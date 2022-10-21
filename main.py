@@ -4,17 +4,7 @@ from flask import request
 from flask_cors import CORS
 import json
 from waitress import serve
-import pymongo
-import certifi
 
-ca = certifi.where()
-client = pymongo.MongoClient("mongodb+srv://jgbuenaventurap:bdregistraduria@cluster0.kv4zq1l.mongodb.net/?retryWrites=true&w=majority",tlsCAFile=ca)
-
-db = client.test
-print(db)
-
-baseDatos = client["bd-registraduria-ciclo4"]
-print(baseDatos.list_collection_names())
 
 app=Flask(__name__)
 cors = CORS(app)
@@ -37,7 +27,7 @@ def test():
     return jsonify(json)
 ############################################################################################
 @app.route("/candidato",methods=['GET'])
-def getCandidato():
+def getCandidatos():
     json=miControladorCandidato.index()
     return jsonify(json)
 
@@ -48,7 +38,7 @@ def crearCandidato():
     return jsonify(json)
 
 @app.route("/candidato/<string:id>",methods=['GET'])
-def getEstudiante(id):
+def getCandidato(id):
     json=miControladorCandidato.show(id)
     return jsonify(json)
 
@@ -70,7 +60,7 @@ def asignarPartidoACandidato(id, id_partido):
 
 ######################################################################################
 @app.route("/partido",methods=['GET'])
-def getPartido():
+def getPartidos():
     json=miControladorPartido.index()
     return jsonify(json)
 
@@ -97,7 +87,7 @@ def eliminarPartido(id):
     return jsonify(json)
 ######################################################################################
 @app.route("/mesa",methods=['GET'])
-def getMesa():
+def getMesas():
     json=miControladorCandidato.index()
     return jsonify(json)
 
@@ -124,14 +114,14 @@ def eliminarMesa(id):
     return jsonify(json)
 ######################################################################################
 @app.route("/resultado",methods=['GET'])
-def getResultado():
+def getResultados():
     json=miControladorResultado.index()
     return jsonify(json)
 
-@app.route("/resultado",methods=['POST'])
-def crearResultado():
+@app.route("/resultado/candidato/<string:id_candidato>/mesa/<string:id_mesa>/partido/<string:id_partido>",methods=['POST'])
+def crearResultado(id_candidato,id_mesa,id_partido):
     data = request.get_json()
-    json=miControladorResultado.create(data)
+    json=miControladorResultado.create(data,id_candidato,id_mesa,id_partido)
     return jsonify(json)
 
 @app.route("/resultado/<string:id>",methods=['GET'])

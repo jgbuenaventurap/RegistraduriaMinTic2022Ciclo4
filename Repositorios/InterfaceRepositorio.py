@@ -9,9 +9,8 @@ class InterfaceRepositorio(Generic[T]):
     def __init__(self): 
         ca = certifi.where() 
         dataConfig = self.loadFileConfig() 
-        client = pymongo.MongoClient(dataConfig["data-db-connection"], 
-        tlsCAFile=ca) 
-        self.baseDatos = client[dataConfig["name-db"]] 
+        client = pymongo.MongoClient("mongodb+srv://jgbuenaventurap:bdregistraduria@cluster0.kv4zq1l.mongodb.net/?retryWrites=true&w=majority",tlsCAFile=ca)
+        self.baseDatos = client["bd-registraduria-ciclo4"] 
         theClass = get_args(self.__orig_bases__[0]) 
         self.coleccion = theClass[0].__name__.lower() 
     def loadFileConfig(self): 

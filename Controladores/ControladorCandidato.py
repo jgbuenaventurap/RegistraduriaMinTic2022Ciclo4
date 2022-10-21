@@ -8,7 +8,7 @@ class ControladorCandidato():
         self.repositorioCandidato = RepositorioCandidato()
         self.repositorioPartido = RepositorioPartido()
     def index(self):
-        return self.RepositorioCandidato.findAll()
+        return self.repositorioCandidato.findAll()
     def create(self,infoCandidato):
         nuevoCandidato=Candidato(infoCandidato)
         return self.repositorioCandidato.save(nuevoCandidato)
