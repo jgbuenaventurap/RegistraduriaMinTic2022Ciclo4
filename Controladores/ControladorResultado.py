@@ -10,14 +10,15 @@ from Repositorios.RepositorioPartido import RepositorioPartido
 class ControladorResultado(): 
 
     def __init__(self): 
-        self.repositorioResultado = RepositorioResultado() 
+        self.repositorioResultado = RepositorioResultado()
+        self.repositorioCandidato = RepositorioCandidato() 
         self.repositorioMesa = RepositorioMesa() 
-        self.repositorioCandiato = RepositorioCandidato() 
+        self.repositorioPartido = RepositorioPartido() 
 
     def index(self): 
         return self.repositorioResultado.findAll() 
 
-#Asignacion Mesa y Candidato a Resultado
+#Asignacion candidato, mesa y partido a Resultado
 
     def create(self,infoResultado,id_candidato,id_mesa,id_partido): 
         nuevoResultado=Resultado(infoResultado) 
